@@ -1,4 +1,4 @@
-import { ContactsCollection } from '../modals/contacts';
+import { ContactsCollection } from '../db/modals/contacts.js';
 
 export const getAllContacts = async () => {
   const contacts = await ContactsCollection.find();

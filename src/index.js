@@ -1,8 +1,8 @@
-import { initMongoDbConnection } from './db/initMongoDbConnection.js';
+import { initMongoConnection } from './db/initMongoConnection.js';
 import { setupServer } from './server.js';
 
 const bootstrap = async () => {
-  await initMongoDbConnection();
+  await initMongoConnection();
   setupServer();
 };
 

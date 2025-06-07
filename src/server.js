@@ -18,11 +18,12 @@ export const setupServer = () => {
   );
 
   app.get('/contacts', async (req, res) => {
-    const data = await getAllContacts();
+    const contacts = await getAllContacts();
+
     res.status(200).json({
       message: 'Successfully retrieved students!',
       status: 200,
-      data,
+      data: contacts,
     });
   });
 
@@ -32,14 +33,14 @@ export const setupServer = () => {
 
     if (!contact) {
       return res.status(404).json({
-        message: `Contact with id ${contactId} not found!`,
+        message: `Contact not found!`,
         status: 404,
       });
       return;
     }
 
     res.status(200).json({
-      message: `Successfully retrieved student with id ${contactId}!`,
+      message: `Successfully found contact with id ${contactId}!`,
       status: 200,
       data: contact,
     });
