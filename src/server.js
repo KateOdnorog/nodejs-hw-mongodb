@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
 import { getEnvVar } from './utils/getEnvVar.js';
+import { getAllContacts, getContactById } from './services/contact.js';
 
 export const setupServer = () => {
   const app = express();
@@ -16,17 +17,44 @@ export const setupServer = () => {
     }),
   );
 
-  app.use((error, req, res, next) => {
-    res.json({
-      errorMessage: error.message,
-      id: req.id,
+  app.get('/contacts', async (req, res) => {
+    const data = await getAllContacts();
+    res.status(200).json({
+      message: 'Successfully retrieved students!',
+      status: 200,
+      data,
     });
   });
 
-  app.use((req, res) => {
+  app.get('/contacts/:contactId', async (req, res, next) => {
+    const { contactId } = req.params;
+    const contact = await getContactById(contactId);
+
+    if (!contact) {
+      return res.status(404).json({
+        message: `Contact with id ${contactId} not found!`,
+        status: 404,
+      });
+      return;
+    }
+
+    res.status(200).json({
+      message: `Successfully retrieved student with id ${contactId}!`,
+      status: 200,
+      data: contact,
+    });
+  });
+
+  app.use((req, res, next) => {
     res.status(404).json({
       message: 'Not Found',
       status: 404,
+    });
+  });
+
+  app.use((error, req, res, next) => {
+    res.json({
+      errorMessage: error.message,
     });
   });
 
