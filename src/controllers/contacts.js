@@ -5,7 +5,7 @@ import {
   updateContact,
   deleteContact,
 } from '../services/contact.js';
-import { notFoundContact } from '../middlewares/notFoundContact.js';
+import createHttpError from 'http-errors';
 
 export const getContactsController = async (req, res) => {
   const contacts = await getAllContacts();
@@ -22,8 +22,7 @@ export const getContactByIdController = async (req, res, next) => {
   const contact = await getContactById(contactId);
 
   if (!contact) {
-    next(notFoundContact);
-    return;
+    throw createHttpError(404, 'Student not found');
   }
 
   res.status(200).json({
@@ -48,8 +47,7 @@ export const patchContactController = async (req, res, next) => {
   const result = await updateContact(contactId, req.body);
 
   if (!result) {
-    next(notFoundContact);
-    return;
+    throw createHttpError(404, 'Student not found');
   }
 
   res.json({
@@ -65,8 +63,7 @@ export const deleteContactController = async (req, res, next) => {
   const student = await deleteContact(contactId);
 
   if (!student) {
-    next(notFoundContact);
-    return;
+    throw createHttpError(404, 'Student not found');
   }
 
   res.status(204).send();
