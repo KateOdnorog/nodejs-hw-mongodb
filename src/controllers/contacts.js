@@ -23,7 +23,7 @@ export const getContactsController = async (req, res) => {
   });
 
   res.status(200).json({
-    message: 'Successfully retrieved students!',
+    message: 'Successfully retrieved contacts!',
     status: 200,
     data: contacts,
   });
