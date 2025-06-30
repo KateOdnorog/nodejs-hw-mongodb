@@ -1,0 +1,31 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Contacts app
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: Phonebook for managed your contacts
+tags:
+  # теги, що ви будете використовувати
+  - name: Contacts
+    description: Operations about phonebook.
+servers:
+  - url: http://localhost:3000
+  - url: https://contacts-app-g7tc.onrender.com
+paths:
+  # тут будуть посилання на ендпоінти
+  /contacts:
+    get:
+      $ref: ../swagger/paths/contacts/get.yaml
+    post:
+      $ref: ../swagger/paths/contacts/post.yaml
+
+  /contacts/{id}:
+    get:
+      $ref: ../swagger/paths/contacts/{id}/get.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
