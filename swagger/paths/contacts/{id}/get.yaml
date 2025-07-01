@@ -29,7 +29,7 @@ responses:
               example: 200
             message:
               type: string
-              example: Successfully found contact with id 68514f97b5453e6300080b9f!
+              example: 'Successfully found contact with id 68514f97b5453e6300080b9f!'
             data:
               type: object
               $ref: ../../../components/schemas/contact.yaml
