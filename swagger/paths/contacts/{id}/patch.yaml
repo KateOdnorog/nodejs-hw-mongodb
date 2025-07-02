@@ -2,7 +2,7 @@ tags:
   - Contacts
 summary: Patch contact
 operationId: patchContact
-description: 'Create contact with payload'
+description: 'Update contact with payload'
 security:
   - bearerAuth: []
 parameters:
@@ -25,7 +25,7 @@ requestBody:
           phoneNumber:
             description: "Contact's phone number"
             type: string
-            example: +380000000001
+            example: '+380000000001'
           email:
             description: "Contact's email"
             type: string
@@ -38,6 +38,7 @@ requestBody:
             description: "Contact's type"
             type: string
             enum: ['work', 'home', 'personal']
+            default: 'personal'
           photo:
             description: "Contact's photo"
             type: string

@@ -17,7 +17,7 @@ properties:
   phoneNumber:
     description: "Contact's phone number"
     type: string
-    example: +380000000001
+    example: '+380000000001'
   email:
     description: "Contact's email"
     type: string
@@ -37,4 +37,4 @@ properties:
   photo:
     description: "Link to contact's photo"
     type: string
-    example: https://res.cloudinary.com/daotalisk/image/upload/v1750974172/ngjuvwvz8sg29snryv5t.jpg
+    example: https://res.cloudinary.com/daotalisk/image/upload/v1750941622/taz3fu8oiuj8453zvdb1.jpg
